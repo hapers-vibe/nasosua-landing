@@ -964,18 +964,26 @@ fbq('track', 'PageView');
       <span class="hero__title-sub">30 літрів за хвилину</span>
     </h1>
     
-    <div class="price-box">
-      <div class="price-section">
-        <div class="price-label">Стара ціна</div>
-        <div class="price-old">1 700 ГРН</div>
+    <div class="price-blocks">
+      <!-- 🔘 Блок 1: Стара ціна -->
+      <div class="price-block price-block--old">
+        <div class="price-block__label">Стара ціна</div>
+        <div class="price-block__value price-block__value--old">1 700 ГРН</div>
       </div>
-      <div class="price-section price-new-section">
-        <div class="price-label">Нова ціна</div>
-        <div class="price-new">1 000 ГРН</div>
-        <div class="price-new-desc">повний комплект</div>
+
+      <!-- 🟧 Блок 2: Нова ціна -->
+      <div class="price-block price-block--new">
+        <div class="price-block__label price-block__label--accent">Нова ціна</div>
+        <div class="price-block__value price-block__value--new">1 000 ГРН</div>
+        <div class="price-block__sub">повний комплект</div>
       </div>
-      <div style="text-align:center;">
-        <span class="price-discount">−41% сьогодні</span>
+
+      <!-- ⚡ Блок 3: Скидка с пульсацией -->
+      <div class="price-block price-block--discount">
+        <div class="discount-pill">
+          <span class="discount-pill__icon">⚡</span>
+          <span class="discount-pill__text">−41% СЬОГОДНІ</span>
+        </div>
       </div>
     </div>
 

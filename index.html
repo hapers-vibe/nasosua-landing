@@ -334,19 +334,21 @@ h1, h2, h3 {
   gap: 8px;
 }
 .hero__title-main {
-  font-size: 38px;
+  font-size: 28px;
   color: white;
   display: block;
-  line-height: 1.05;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 .hero__title-sub {
-  font-size: 44px;
+  font-size: 36px;
   color: var(--accent);
   display: block;
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.05;
-  margin-top: 4px;
+  margin-top: 8px;
+  white-space: nowrap;
 }
 .hero__title .highlight { color: var(--accent); }
 
@@ -837,8 +839,8 @@ h1, h2, h3 {
 @media (min-width: 768px) {
   :root { --container-max: 560px; }
   .hero__title { font-size: 44px; }
-  .hero__title-main { font-size: 52px; }
-  .hero__title-sub { font-size: 62px; }
+  .hero__title-main { font-size: 38px; }
+  .hero__title-sub { font-size: 52px; }
   .section__title { font-size: 32px; }
 }
 

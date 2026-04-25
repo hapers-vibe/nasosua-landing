@@ -237,6 +237,79 @@ h1, h2, h3 {
   .gallery-top .swiper-slide img { aspect-ratio: 16/11; }
 }
 
+
+/* 🎯 FEATURES STRIP — Quick benefits in one row right below gallery */
+.features-strip {
+  padding: 16px 12px 8px;
+  margin: 0;
+}
+.features-strip__inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.feature-pill {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 107, 53, 0.25);
+  border-radius: var(--r-md);
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  transition: transform 0.15s, border-color 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.feature-pill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 107, 53, 0.5) 50%, transparent 100%);
+}
+.feature-pill__icon {
+  font-size: 24px;
+  line-height: 1;
+}
+.feature-pill__text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  white-space: normal;
+}
+
+@media (min-width: 768px) {
+  .features-strip {
+    padding: 20px 16px 12px;
+  }
+  .features-strip__inner {
+    gap: 12px;
+    max-width: 560px;
+  }
+  .feature-pill {
+    padding: 16px 10px;
+  }
+  .feature-pill__icon {
+    font-size: 28px;
+  }
+  .feature-pill__text {
+    font-size: 13px;
+  }
+}
+
 .hero { padding: 24px 0 40px; text-align: center; }
 .hero__badge {
   display: inline-block;
@@ -751,6 +824,28 @@ fbq('track', 'PageView');
   </div>
 </section>
 
+<!-- 🎯 Quick Features Strip — одна строка, отдельные блоки -->
+<div class="features-strip">
+  <div class="features-strip__inner">
+    <div class="feature-pill">
+      <div class="feature-pill__icon">🔋</div>
+      <div class="feature-pill__text">12V/24V</div>
+    </div>
+    <div class="feature-pill">
+      <div class="feature-pill__icon">⛽</div>
+      <div class="feature-pill__text">Бензин<br>дизель</div>
+    </div>
+    <div class="feature-pill">
+      <div class="feature-pill__icon">🎯</div>
+      <div class="feature-pill__text">З пістолетом</div>
+    </div>
+    <div class="feature-pill">
+      <div class="feature-pill__icon">📦</div>
+      <div class="feature-pill__text">Повний<br>комплект</div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <section class="hero">
     <span class="hero__badge">⚡ Хіт продажів 2026</span>
@@ -758,13 +853,6 @@ fbq('track', 'PageView');
       Паливний насос для перекачування палива<br>
       <span class="highlight">30 літрів за хвилину</span>
     </h1>
-    
-    <div class="hero__features">
-      <div class="feature-block"><span>🔋</span><span class="feature-block__text">12V/24V</span></div>
-      <div class="feature-block"><span>⛽</span><span class="feature-block__text">Бензин, дизель</span></div>
-      <div class="feature-block"><span>🎯</span><span class="feature-block__text">З пістолетом</span></div>
-      <div class="feature-block"><span>📦</span><span class="feature-block__text">Повний комплект</span></div>
-    </div>
     
     <div class="price-box">
       <div class="price-section">

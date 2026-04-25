@@ -407,8 +407,6 @@ h1, h2, h3 {
   overflow: hidden;
   text-align: center;
   min-height: 60px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  animation: pillBreathe 2.5s ease-in-out infinite;
 }
 
 .price-pill::before {
@@ -445,11 +443,14 @@ h1, h2, h3 {
   margin-left: 2px;
 }
 
-/* 🟧 Pill 1 — СТАРА ЦІНА (оранжевый фон) */
+/* ⬛ Pill 1 — СТАРА ЦІНА (чёрный фон + оранжевый текст + свечение) */
 .price-pill--old {
-  background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
-  color: white;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #1F1F1F 0%, #0F0F0F 100%);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 24px rgba(255, 107, 53, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 12px rgba(255, 107, 53, 0.5);
+  animation: glowPulse1 2s ease-in-out infinite;
 }
 .price-pill--old .price-pill__value {
   text-decoration: line-through;
@@ -457,38 +458,32 @@ h1, h2, h3 {
   opacity: 0.95;
 }
 
-/* ⬛ Pill 2 — НОВА ЦІНА (тёмный + оранжевая обводка) */
+/* 🟧 Pill 2 — НОВА ЦІНА (оранжевый фон + белый текст + свечение) */
 .price-pill--new {
+  background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
+  color: white;
+  box-shadow: 0 0 28px rgba(255, 107, 53, 0.6), 0 4px 16px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  animation: glowPulse2 2s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+/* ⬛ Pill 3 — ЗНИЖКА (чёрный фон + оранжевый текст, главный акцент с сильной пульсацией) */
+.price-pill--discount {
   background: linear-gradient(135deg, #1F1F1F 0%, #0F0F0F 100%);
   color: var(--accent);
   border: 2px solid var(--accent);
-  text-shadow: 0 0 12px rgba(255, 107, 53, 0.5);
-  animation-delay: 0.3s;
-}
-.price-pill--new .price-pill__label {
-  color: white;
-  text-shadow: none;
-}
-
-/* 🔥 Pill 3 — ЗНИЖКА (главный акцент с сильной пульсацией) */
-.price-pill--discount {
-  background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 50%, #D4491F 100%);
-  color: white;
   font-size: 24px;
   padding: 20px;
   min-height: 68px;
-  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.5);
-  animation: discountPulse 1.8s ease-in-out infinite;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 0 32px rgba(255, 107, 53, 0.5), 0 8px 24px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 16px rgba(255, 107, 53, 0.7);
+  animation: discountPulse 1.6s ease-in-out infinite;
+  animation-delay: 0.8s;
 }
 .price-pill--discount .price-pill__value {
   font-size: 26px;
   letter-spacing: 0.05em;
-}
-
-@keyframes pillBreathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
 }
 
 @keyframes pillShine {
@@ -496,14 +491,39 @@ h1, h2, h3 {
   60%, 100% { left: 200%; }
 }
 
+/* Свечение для блока 1 (чёрный с оранжевым текстом) */
+@keyframes glowPulse1 {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 24px rgba(255, 107, 53, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 36px rgba(255, 107, 53, 0.7), 0 0 0 4px rgba(255, 107, 53, 0.15), 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Свечение для блока 2 (оранжевый с белым текстом) */
+@keyframes glowPulse2 {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 28px rgba(255, 107, 53, 0.6), 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.025);
+    box-shadow: 0 0 44px rgba(255, 107, 53, 0.85), 0 0 0 6px rgba(255, 107, 53, 0.2), 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Самая активная пульсация для скидки */
 @keyframes discountPulse {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.5);
+    box-shadow: 0 0 32px rgba(255, 107, 53, 0.5), 0 8px 24px rgba(0, 0, 0, 0.4);
   }
   50% {
     transform: scale(1.05);
-    box-shadow: 0 12px 36px rgba(255, 107, 53, 0.85), 0 0 0 8px rgba(255, 107, 53, 0.15);
+    box-shadow: 0 0 50px rgba(255, 107, 53, 0.9), 0 0 0 8px rgba(255, 107, 53, 0.2), 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 }
 

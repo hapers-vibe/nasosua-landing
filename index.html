@@ -641,7 +641,59 @@ h1, h2, h3 {
   .hero__title { font-size: 38px; }
   .section__title { font-size: 32px; }
 }
+
+.form-input--error {
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.thank-you {
+  text-align: center;
+  padding: 40px 20px;
+  display: none;
+}
+
+.thank-you--active { 
+  display: block; 
+}
+
+.thank-you__icon { 
+  font-size: 64px; 
+  margin-bottom: 16px; 
+}
+
+.thank-you__title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.thank-you__text {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
 </style>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '955418847244360');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=955418847244360&ev=PageView&noscript=1"/></noscript>
+
 </head>
 <body>
 
@@ -877,6 +929,225 @@ h1, h2, h3 {
 </footer>
 
 </div>
+
+
+<script>
+// ====== 🔧 КОНФИГУРАЦИЯ ЛЕНДИНГА ======
+const LANDING_CONFIG = {
+  apiUrl: 'https://nasosua-backend.vercel.app/api/order',
+  shopName: 'NasosUA',
+  product: 'Паливний насос для перекачування палива',
+  price: '1000',
+  timerHours: 3
+};
+
+// ====== 🔥 TIMER ======
+(function initTimer() {
+  const TIMER_KEY = 'landing_timer_end';
+  let endTime = parseInt(sessionStorage.getItem(TIMER_KEY) || '0', 10);
+  
+  if (!endTime || endTime < Date.now()) {
+    endTime = Date.now() + LANDING_CONFIG.timerHours * 60 * 60 * 1000;
+    sessionStorage.setItem(TIMER_KEY, String(endTime));
+  }
+  
+  const hEl = document.getElementById('timer-h');
+  const mEl = document.getElementById('timer-m');
+  const sEl = document.getElementById('timer-s');
+  
+  function pad(n) { return String(n).padStart(2, '0'); }
+  
+  function tick() {
+    let diff = Math.max(0, endTime - Date.now());
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    
+    if (hEl) hEl.textContent = pad(h);
+    if (mEl) mEl.textContent = pad(m);
+    if (sEl) sEl.textContent = pad(s);
+    
+    if (diff <= 0) {
+      endTime = Date.now() + LANDING_CONFIG.timerHours * 60 * 60 * 1000;
+      sessionStorage.setItem(TIMER_KEY, String(endTime));
+    }
+  }
+  
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// ====== 📍 SCROLL TO FORM ======
+document.querySelectorAll('[data-scroll-to]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.getElementById(btn.dataset.scrollTo);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Pixel: InitiateCheckout
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: LANDING_CONFIG.product,
+          value: parseFloat(LANDING_CONFIG.price) || 0,
+          currency: 'UAH'
+        });
+      }
+    }
+  });
+});
+
+// ====== ❓ FAQ ======
+document.querySelectorAll('.faq-item__q').forEach(q => {
+  q.addEventListener('click', () => {
+    q.closest('.faq-item').classList.toggle('faq-item--open');
+  });
+});
+
+// ====== 📊 SCROLL TRACKING ======
+(function initScrollTracking() {
+  let viewContentFired = false;
+  let addToCartFired = false;
+  
+  // ViewContent через 10 сек
+  setTimeout(() => {
+    if (!viewContentFired) {
+      viewContentFired = true;
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'ViewContent', {
+          content_name: LANDING_CONFIG.product,
+          value: parseFloat(LANDING_CONFIG.price) || 0,
+          currency: 'UAH'
+        });
+      }
+    }
+  }, 10000);
+  
+  // AddToCart при скролі > 50%
+  window.addEventListener('scroll', () => {
+    if (addToCartFired) return;
+    const scrolled = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+    if (scrolled > 0.5) {
+      addToCartFired = true;
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'AddToCart', {
+          content_name: LANDING_CONFIG.product,
+          value: parseFloat(LANDING_CONFIG.price) || 0,
+          currency: 'UAH'
+        });
+      }
+    }
+  }, { passive: true });
+})();
+
+// ====== 📝 UTM + CLICK IDs ======
+function getUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_content', 'utm_term', 'ttclid', 'fbclid'];
+  const result = {};
+  
+  keys.forEach(key => {
+    const val = params.get(key);
+    if (val) {
+      result[key] = val;
+      sessionStorage.setItem(`utm_${key}`, val);
+    } else {
+      const saved = sessionStorage.getItem(`utm_${key}`);
+      if (saved) result[key] = saved;
+    }
+  });
+  
+  return result;
+}
+
+// ====== 📤 FORM SUBMIT ======
+document.getElementById('orderForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const form = e.target;
+  const submitBtn = document.getElementById('submitBtn');
+  const originalBtnText = submitBtn.innerHTML;
+  
+  // Валідація телефону
+  const phoneInput = form.querySelector('[name="phone"]');
+  const phone = phoneInput.value.replace(/[\s\-()]/g, '');
+  if (!/^(\+?38)?0\d{9}$/.test(phone)) {
+    phoneInput.classList.add('form-input--error');
+    phoneInput.focus();
+    return;
+  }
+  phoneInput.classList.remove('form-input--error');
+  
+  // Валідація обов'язкових полів
+  const requiredFields = ['name', 'city', 'warehouse'];
+  let hasError = false;
+  requiredFields.forEach(field => {
+    const input = form.querySelector(`[name="${field}"]`);
+    if (!input.value.trim() || input.value.trim().length < 2) {
+      input.classList.add('form-input--error');
+      hasError = true;
+    } else {
+      input.classList.remove('form-input--error');
+    }
+  });
+  
+  if (hasError) {
+    form.querySelector('.form-input--error').focus();
+    return;
+  }
+  
+  // Збираємо дані
+  const formData = new FormData(form);
+  const urlParams = getUrlParams();
+  
+  const payload = {
+    name: formData.get('name').trim(),
+    phone: phone,
+    city: formData.get('city').trim(),
+    warehouse: formData.get('warehouse').trim(),
+    website: formData.get('website') || '',
+    shop_name: LANDING_CONFIG.shopName,
+    product: LANDING_CONFIG.product,
+    price: LANDING_CONFIG.price,
+    full_url: window.location.href,
+    ...urlParams
+  };
+  
+  // Блокуємо кнопку
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '⏳ Відправка...';
+  
+  try {
+    const response = await fetch(LANDING_CONFIG.apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || 'Помилка відправки');
+    }
+    
+    // 🎯 PIXEL EVENTS — тільки після успіху
+    if (typeof fbq !== 'undefined') {
+      fbq('track', 'Lead', {
+        content_name: LANDING_CONFIG.product,
+        value: parseFloat(LANDING_CONFIG.price) || 0,
+        currency: 'UAH'
+      });
+    }
+    
+    // Показуємо thank-you
+    document.getElementById('order-form-content').style.display = 'none';
+    document.getElementById('thankYou').classList.add('thank-you--active');
+    document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+    
+  } catch (error) {
+    alert('❌ ' + (error.message || 'Помилка. Спробуйте ще раз або зателефонуйте нам.'));
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalBtnText;
+  }
+});
+</script>
 
 </body>
 </html>

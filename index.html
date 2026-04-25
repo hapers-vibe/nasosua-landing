@@ -143,7 +143,7 @@ h1, h2, h3 {
 .gallery-top .swiper-slide { overflow: hidden; background: #0b0b0b; }
 .gallery-top .swiper-slide img {
   width: 100%;
-  aspect-ratio: 16/12;
+  aspect-ratio: 4/3;
   object-fit: cover;
   display: block;
 }
@@ -171,7 +171,7 @@ h1, h2, h3 {
 
 .photo-placeholder {
   width: 100%;
-  aspect-ratio: 16/12;
+  aspect-ratio: 4/3;
   background: linear-gradient(135deg, #1E293B 0%, #374151 50%, #1E293B 100%);
   display: flex;
   align-items: center;
@@ -181,6 +181,17 @@ h1, h2, h3 {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+@media (min-width: 768px) {
+  .glass-container {
+    max-width: 520px;
+    margin: 20px auto;
+  }
+  .gallery-top .swiper-slide img,
+  .gallery-top .swiper-slide .photo-placeholder { 
+    aspect-ratio: 16/10; 
+  }
 }
 
 @media (min-width: 768px) {
@@ -392,8 +403,8 @@ h1, h2, h3 {
 /* На мобільних - менший padding */
 @media (max-width: 767px) {
   .glass-container {
-    margin: 16px 12px;
-    padding: 20px;
+    margin: 16px 8px;
+    padding: 16px;
     border-radius: 16px;
   }
 }

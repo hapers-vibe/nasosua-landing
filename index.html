@@ -208,7 +208,7 @@ h1, h2, h3 {
   justify-content: center;
 }
 .feature-block {
-  background: var(--bg-mid);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border);
   border-radius: var(--r-full);
   padding: 8px 12px;
@@ -224,7 +224,7 @@ h1, h2, h3 {
 }
 
 .price-box {
-  background: var(--bg-mid);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--r-lg);
   padding: 24px 20px;
   margin: 20px 0;
@@ -307,6 +307,40 @@ h1, h2, h3 {
   50% { box-shadow: 0 8px 24px rgba(255, 107, 53, 0.7), 0 0 0 6px rgba(255, 107, 53, 0.15); }
 }
 
+
+/* 🪟 GLASS CONTAINER */
+.glass-container {
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  margin: 20px 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+}
+
+/* На мобільних - менший padding */
+@media (max-width: 767px) {
+  .glass-container {
+    margin: 16px 12px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+}
+
 .section { padding: 40px 0; border-top: 1px solid var(--border); }
 .section__title {
   font-size: 26px;
@@ -320,7 +354,7 @@ h1, h2, h3 {
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  background: var(--bg-mid);
+  background: rgba(255, 255, 255, 0.05);
   padding: 16px;
   border-radius: var(--r-md);
   border: 1px solid var(--border);
@@ -347,7 +381,7 @@ h1, h2, h3 {
 }
 
 .review {
-  background: var(--bg-mid);
+  background: rgba(255, 255, 255, 0.05);
   padding: 18px;
   border-radius: var(--r-md);
   margin-bottom: 14px;
@@ -364,7 +398,7 @@ h1, h2, h3 {
 .review__text { font-size: 15px; line-height: 1.5; }
 
 .order-form {
-  background: var(--bg-mid);
+  background: rgba(255, 255, 255, 0.05);
   padding: 24px 20px;
   border-radius: var(--r-lg);
   border: 1px solid var(--border);
@@ -435,7 +469,7 @@ h1, h2, h3 {
 }
 
 .faq-item {
-  background: var(--bg-mid);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--r-md);
   margin-bottom: 10px;
   overflow: hidden;
@@ -514,7 +548,7 @@ h1, h2, h3 {
 
 <div class="container">
 
-  <section class="hero">
+<section class="hero">
     <span class="hero__badge">⚡ Хіт продажів 2026</span>
     <h1 class="hero__title">
       Паливний насос для перекачування палива<br>
@@ -547,6 +581,9 @@ h1, h2, h3 {
       ЗАМОВИТИ ЗА 1000 ₴
     </button>
   </section>
+
+  <div class="glass-container">
+
 
   <section class="section">
     <h2 class="section__title">Чому обирають <span class="highlight">нас</span></h2>
@@ -731,6 +768,9 @@ h1, h2, h3 {
       <div class="faq-item__a">Так, 14 днів на повернення якщо не підійшов + гарантія виробника на дефекти.</div>
     </div>
   </section>
+
+</div>
+  </div>
 
 </div>
 

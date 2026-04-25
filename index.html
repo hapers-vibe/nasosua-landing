@@ -324,10 +324,26 @@ h1, h2, h3 {
   text-transform: uppercase;
 }
 .hero__title {
-  font-size: 24px;
-  margin-bottom: 12px;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
+  font-size: 32px;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hero__title-main {
+  font-size: 32px;
+  color: white;
+  display: block;
+}
+.hero__title-sub {
+  font-size: 36px;
+  color: var(--accent);
+  display: block;
+  font-weight: 900;
+  letter-spacing: -0.02em;
 }
 .hero__title .highlight { color: var(--accent); }
 
@@ -817,7 +833,9 @@ h1, h2, h3 {
 
 @media (min-width: 768px) {
   :root { --container-max: 560px; }
-  .hero__title { font-size: 38px; }
+  .hero__title { font-size: 44px; }
+  .hero__title-main { font-size: 44px; }
+  .hero__title-sub { font-size: 52px; }
   .section__title { font-size: 32px; }
 }
 
@@ -937,8 +955,8 @@ fbq('track', 'PageView');
 <div class="container">
   <section class="hero">
     <h1 class="hero__title">
-      Паливний насос для перекачування палива<br>
-      <span class="highlight">30 літрів за хвилину</span>
+      <span class="hero__title-main">Паливний насос для перекачування палива</span>
+      <span class="hero__title-sub">30 літрів за хвилину</span>
     </h1>
     
     <div class="price-box">

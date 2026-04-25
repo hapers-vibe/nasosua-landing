@@ -126,15 +126,17 @@ h1, h2, h3 {
 }
 .timer-bar__logo {
   font-family: 'Oswald', sans-serif;
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: 0.02em;
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: 0.03em;
   color: white;
   text-decoration: none;
   text-transform: uppercase;
   position: relative;
   z-index: 2;
   white-space: nowrap;
+  flex: 1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 .timer-bar__clock {
   display: inline-flex;
@@ -161,7 +163,7 @@ h1, h2, h3 {
   padding: 0 1px;
 }
 @media (min-width: 768px) {
-  .timer-bar__logo { font-size: 22px; }
+  .timer-bar__logo { font-size: 32px; }
   .timer-bar__clock { font-size: 24px; }
   .timer-bar__unit { padding: 4px 11px; min-width: 46px; border-radius: 8px; }
 }

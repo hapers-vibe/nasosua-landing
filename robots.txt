@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /images/preview*
+
+Sitemap: https://nasosua.shop/sitemap.xml

@@ -168,6 +168,21 @@ h1, h2, h3 {
   border-radius: 4px;
 }
 /* 🖥 Desktop — обмежуємо галерею 520px по центру */
+
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 16/12;
+  background: linear-gradient(135deg, #1E293B 0%, #374151 50%, #1E293B 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 @media (min-width: 768px) {
   .gallery-top {
     max-width: 520px;
@@ -633,12 +648,12 @@ h1, h2, h3 {
   <div class="gallery">
     <div class="swiper" id="product-gallery">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-complete-set.jpg" alt="Повний комплект паливного насоса" loading="lazy"></div>
-        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-with-gun.jpg" alt="Насос з пістолетом для перекачування" loading="lazy"></div>
-        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-in-garage.jpg" alt="Насос у гаражі з автомобілем" loading="lazy"></div>
-        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-on-road.jpg" alt="Насос на дорозі" loading="lazy"></div>
-        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-clean-bg.jpg" alt="Насос на чистому фоні" loading="lazy"></div>
-        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-components.jpg" alt="Компоненти насоса" loading="lazy"></div>
+        <div class="swiper-slide"><div class="photo-placeholder">📦 Повний комплект</div></div>
+        <div class="swiper-slide"><div class="photo-placeholder">🎯 Насос з пістолетом</div></div>
+        <div class="swiper-slide"><div class="photo-placeholder">🚗 У гаражі з авто</div></div>
+        <div class="swiper-slide"><div class="photo-placeholder">🛣️ На дорозі</div></div>
+        <div class="swiper-slide"><div class="photo-placeholder">⚙️ Чистий фон</div></div>
+        <div class="swiper-slide"><div class="photo-placeholder">📋 Компоненти</div></div>
       </div>
       <div class="swiper-pagination"></div>
     </div>

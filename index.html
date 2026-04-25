@@ -167,12 +167,11 @@ h1, h2, h3 {
   .timer-bar__clock { font-size: 24px; }
   .timer-bar__unit { padding: 4px 11px; min-width: 46px; border-radius: 8px; }
 
-  .price-pill { padding: 22px 24px; min-height: 68px; }
-  .price-pill__label { font-size: 22px; }
-  .price-pill__value { font-size: 28px; }
-  .price-pill__value small { font-size: 20px; }
-  .price-pill--discount { font-size: 28px; min-height: 76px; padding: 24px; }
-  .price-pill--discount .price-pill__value { font-size: 32px; }
+  .price-pill { padding: 26px 28px; min-height: 80px; }
+  .price-pill__label { font-size: 30px; }
+  .price-pill__value { font-size: 30px; }
+  .price-pill__value small { font-size: 22px; }
+  .price-pill--discount { min-height: 84px; }
 }
 
 /* 🎠 GALLERY-TOP — FULL WIDTH мобільний, обмежений на desktop (CleanDrive-style) */
@@ -395,9 +394,9 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
-  padding: 18px 20px;
+  padding: 22px 24px;
   border-radius: var(--r-md);
   font-family: 'Oswald', sans-serif;
   font-weight: 800;
@@ -406,7 +405,7 @@ h1, h2, h3 {
   position: relative;
   overflow: hidden;
   text-align: center;
-  min-height: 60px;
+  min-height: 72px;
 }
 
 .price-pill::before {
@@ -422,34 +421,35 @@ h1, h2, h3 {
 }
 
 .price-pill__label {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 800;
   position: relative;
   z-index: 1;
 }
 
 .price-pill__value {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 900;
   position: relative;
   z-index: 1;
+  letter-spacing: 0.03em;
 }
 
 .price-pill__value small {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   text-transform: lowercase;
   opacity: 0.9;
-  margin-left: 2px;
+  margin-left: 4px;
 }
 
-/* ⬛ Pill 1 — СТАРА ЦІНА (чёрный фон + оранжевый текст + свечение) */
+/* ⬛ Pill 1 — СТАРА ЦІНА (чёрный фон + БЕЛЫЙ текст + оранжевое свечение) */
 .price-pill--old {
   background: linear-gradient(135deg, #1F1F1F 0%, #0F0F0F 100%);
-  color: var(--accent);
+  color: white;
   border: 2px solid var(--accent);
   box-shadow: 0 0 24px rgba(255, 107, 53, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
-  text-shadow: 0 0 12px rgba(255, 107, 53, 0.5);
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
   animation: glowPulse1 2s ease-in-out infinite;
 }
 .price-pill--old .price-pill__value {
@@ -468,22 +468,17 @@ h1, h2, h3 {
   animation-delay: 0.4s;
 }
 
-/* ⬛ Pill 3 — ЗНИЖКА (чёрный фон + оранжевый текст, главный акцент с сильной пульсацией) */
+/* ⬛ Pill 3 — ЗНИЖКА (чёрный фон + БЕЛЫЙ текст, главный акцент с сильной пульсацией) */
 .price-pill--discount {
   background: linear-gradient(135deg, #1F1F1F 0%, #0F0F0F 100%);
-  color: var(--accent);
+  color: white;
   border: 2px solid var(--accent);
-  font-size: 24px;
   padding: 20px;
   min-height: 68px;
   box-shadow: 0 0 32px rgba(255, 107, 53, 0.5), 0 8px 24px rgba(0, 0, 0, 0.4);
-  text-shadow: 0 0 16px rgba(255, 107, 53, 0.7);
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
   animation: discountPulse 1.6s ease-in-out infinite;
   animation-delay: 0.8s;
-}
-.price-pill--discount .price-pill__value {
-  font-size: 26px;
-  letter-spacing: 0.05em;
 }
 
 @keyframes pillShine {

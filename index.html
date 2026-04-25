@@ -166,6 +166,13 @@ h1, h2, h3 {
   .timer-bar__logo { font-size: 32px; }
   .timer-bar__clock { font-size: 24px; }
   .timer-bar__unit { padding: 4px 11px; min-width: 46px; border-radius: 8px; }
+
+  .price-pill { padding: 22px 24px; min-height: 68px; }
+  .price-pill__label { font-size: 22px; }
+  .price-pill__value { font-size: 28px; }
+  .price-pill__value small { font-size: 20px; }
+  .price-pill--discount { font-size: 28px; min-height: 76px; padding: 24px; }
+  .price-pill--discount .price-pill__value { font-size: 32px; }
 }
 
 /* 🎠 GALLERY-TOP — FULL WIDTH мобільний, обмежений на desktop (CleanDrive-style) */
@@ -376,77 +383,128 @@ h1, h2, h3 {
   white-space: nowrap;
 }
 
-.price-box {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: var(--r-lg);
-  padding: 24px 20px;
-  margin: 20px 0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  position: relative;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+/* 💰 PRICE PILLS — 3 яркие плашки во всю ширину */
+.price-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 24px 0;
 }
 
-.price-box::before {
+.price-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: var(--r-md);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-height: 60px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  animation: pillBreathe 2.5s ease-in-out infinite;
+}
+
+.price-pill::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+  animation: pillShine 3s ease-in-out infinite;
+  pointer-events: none;
 }
-.price-section { margin-bottom: 20px; }
-.price-section:last-of-type { margin-bottom: 16px; }
-.price-label {
-  font-family: 'Oswald', sans-serif;
-  font-size: 14px;
+
+.price-pill__label {
+  font-size: 18px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 8px;
-  text-align: center;
-  color: var(--text-muted);
+  position: relative;
+  z-index: 1;
 }
-.price-new-section .price-label { color: white; }
-.price-old {
-  font-family: 'Oswald', sans-serif;
-  font-size: 32px;
-  font-weight: 800;
-  color: #FF6B35;
+
+.price-pill__value {
+  font-size: 22px;
+  font-weight: 900;
+  position: relative;
+  z-index: 1;
+}
+
+.price-pill__value small {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: lowercase;
+  opacity: 0.9;
+  margin-left: 2px;
+}
+
+/* 🟧 Pill 1 — СТАРА ЦІНА (оранжевый фон) */
+.price-pill--old {
+  background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.price-pill--old .price-pill__value {
   text-decoration: line-through;
   text-decoration-thickness: 3px;
-  text-align: center;
-  letter-spacing: -0.02em;
-  display: block;
+  opacity: 0.95;
 }
-.price-new {
-  font-family: 'Oswald', sans-serif;
-  font-size: 42px;
-  font-weight: 900;
-  color: white;
-  text-align: center;
-  letter-spacing: -0.03em;
-  margin-bottom: 4px;
+
+/* ⬛ Pill 2 — НОВА ЦІНА (тёмный + оранжевая обводка) */
+.price-pill--new {
+  background: linear-gradient(135deg, #1F1F1F 0%, #0F0F0F 100%);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  text-shadow: 0 0 12px rgba(255, 107, 53, 0.5);
+  animation-delay: 0.3s;
 }
-.price-new-desc {
-  font-size: 14px;
+.price-pill--new .price-pill__label {
   color: white;
-  text-align: center;
-  font-weight: 600;
-  text-transform: uppercase;
+  text-shadow: none;
 }
-.price-discount {
-  display: inline-block;
-  background: var(--danger);
+
+/* 🔥 Pill 3 — ЗНИЖКА (главный акцент с сильной пульсацией) */
+.price-pill--discount {
+  background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 50%, #D4491F 100%);
   color: white;
-  padding: 6px 16px;
-  border-radius: var(--r-sm);
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-top: 8px;
+  font-size: 24px;
+  padding: 20px;
+  min-height: 68px;
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.5);
+  animation: discountPulse 1.8s ease-in-out infinite;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.price-pill--discount .price-pill__value {
+  font-size: 26px;
+  letter-spacing: 0.05em;
+}
+
+@keyframes pillBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes pillShine {
+  0% { left: -100%; }
+  60%, 100% { left: 200%; }
+}
+
+@keyframes discountPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 36px rgba(255, 107, 53, 0.85), 0 0 0 8px rgba(255, 107, 53, 0.15);
+  }
 }
 
 .btn-cta {
@@ -964,32 +1022,22 @@ fbq('track', 'PageView');
       <span class="hero__title-sub">30 літрів за хвилину</span>
     </h1>
     
-    <div class="price-blocks">
-      <!-- 🔘 Блок 1: Стара ціна -->
-      <div class="price-block price-block--old">
-        <div class="price-block__icon">🏷️</div>
-        <div class="price-block__content">
-          <div class="price-block__label">Стара ціна</div>
-          <div class="price-block__value price-block__value--old">1 700 ГРН</div>
-        </div>
+    <div class="price-pills">
+      <!-- 🟧 Pill 1: СТАРА ЦІНА -->
+      <div class="price-pill price-pill--old">
+        <span class="price-pill__label">СТАРА ЦІНА</span>
+        <span class="price-pill__value">1700 <small>грн</small></span>
       </div>
 
-      <!-- 🟧 Блок 2: Нова ціна -->
-      <div class="price-block price-block--new">
-        <div class="price-block__icon price-block__icon--accent">💰</div>
-        <div class="price-block__content">
-          <div class="price-block__label price-block__label--accent">Нова ціна</div>
-          <div class="price-block__value price-block__value--new">1 000 ГРН</div>
-          <div class="price-block__sub">повний комплект</div>
-        </div>
+      <!-- ⬛ Pill 2: НОВА ЦІНА -->
+      <div class="price-pill price-pill--new">
+        <span class="price-pill__label">НОВА ЦІНА</span>
+        <span class="price-pill__value">1000 <small>грн</small></span>
       </div>
 
-      <!-- ⚡ Блок 3: Скидка с пульсацией -->
-      <div class="price-block price-block--discount">
-        <div class="discount-pill">
-          <span class="discount-pill__icon">⚡</span>
-          <span class="discount-pill__text">−41% СЬОГОДНІ</span>
-        </div>
+      <!-- 🔥 Pill 3: ЗНИЖКА -->
+      <div class="price-pill price-pill--discount">
+        <span class="price-pill__value">ЗНИЖКА −41%</span>
       </div>
     </div>
 

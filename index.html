@@ -208,13 +208,14 @@ h1, h2, h3 {
   justify-content: center;
 }
 .feature-block {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(26, 26, 26, 0.8);
   border: 1px solid var(--border);
   border-radius: var(--r-full);
   padding: 8px 12px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  backdrop-filter: blur(10px);
 }
 .feature-block__text {
   font-size: 13px;
@@ -224,11 +225,25 @@ h1, h2, h3 {
 }
 
 .price-box {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border-radius: var(--r-lg);
   padding: 24px 20px;
   margin: 20px 0;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.price-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
 }
 .price-section { margin-bottom: 20px; }
 .price-section:last-of-type { margin-bottom: 16px; }
@@ -308,29 +323,56 @@ h1, h2, h3 {
 }
 
 
-/* 🪟 GLASS CONTAINER */
-.glass-container {
-  background: rgba(26, 26, 26, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  margin: 20px 16px;
-  padding: 24px;
+
+/* 🪟 FULL GLASS CONTAINER */
+.glass-container--full {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  min-height: 100vh;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: none;
+  box-shadow: none;
   position: relative;
-  overflow: hidden;
 }
 
-.glass-container::before {
+.glass-container--full::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+  height: 2px;
+}
+
+.glass-container--full .container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* 🪟 FULL PAGE GLASSMORPHISM */
+.glass-wrapper {
+  min-height: 100vh;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  position: relative;
+  padding: 0;
+}
+
+.glass-wrapper::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+  z-index: 1;
 }
+
 
 /* На мобільних - менший padding */
 @media (max-width: 767px) {
@@ -355,9 +397,22 @@ h1, h2, h3 {
   align-items: flex-start;
   gap: 14px;
   background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   padding: 16px;
   border-radius: var(--r-md);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.benefit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
 }
 .benefit__icon {
   font-size: 28px;
@@ -381,11 +436,24 @@ h1, h2, h3 {
 }
 
 .review {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   padding: 18px;
   border-radius: var(--r-md);
   margin-bottom: 14px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.review::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
 }
 .review__header {
   display: flex;
@@ -398,10 +466,24 @@ h1, h2, h3 {
 .review__text { font-size: 15px; line-height: 1.5; }
 
 .order-form {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 24px 20px;
   border-radius: var(--r-lg);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.order-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
 }
 .order-form__title {
   font-family: 'Oswald', sans-serif;
@@ -427,9 +509,10 @@ h1, h2, h3 {
 .form-input {
   width: 100%;
   padding: 14px 16px;
-  background: linear-gradient(135deg, #0A0A0A 0%, #1A0F0A 50%, #0A0A0A 100%);
-  background-attachment: fixed;
-  border: 1.5px solid var(--border);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--r-md);
   color: white;
   font-size: 16px;
@@ -469,11 +552,24 @@ h1, h2, h3 {
 }
 
 .faq-item {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border-radius: var(--r-md);
   margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
-  border: 1px solid var(--border);
+  position: relative;
+}
+
+.faq-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
 }
 .faq-item__q {
   display: flex;
@@ -509,7 +605,9 @@ h1, h2, h3 {
   padding: 30px 16px 20px;
   font-size: 12px;
   color: var(--text-muted);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 @media (min-width: 768px) {
@@ -528,29 +626,26 @@ h1, h2, h3 {
   </div>
 </div>
 
-<!-- 🎠 ГАЛЕРЕЯ — full-width мобільний / 520px desktop по центру -->
-<!-- 🎠 ГАЛЕРЕЯ — full-width мобільний / 520px desktop по центру -->
-  <div class="glass-container">
+<div class="glass-wrapper">
+
 <section class="gallery-top">
   <div class="gallery">
     <div class="swiper" id="product-gallery">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="./pump1.webp" alt="Паливний насос - повний комплект" loading="eager" fetchpriority="high"></div>
-        <div class="swiper-slide"><img src="./pump2.webp" alt="Насос з пістолетом" loading="eager"></div>
-        <div class="swiper-slide"><img src="./pump3.png" alt="Насос у гаражі з автомобілем" loading="eager"></div>
-        <div class="swiper-slide"><img src="./pump4.png" alt="Насос на дорозі" loading="lazy"></div>
-        <div class="swiper-slide"><img src="./pump5.png" alt="Насос на чистому фоні" loading="lazy"></div>
-        <div class="swiper-slide"><img src="./pump6.png" alt="Розпаковані компоненти" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-complete-set.jpg" alt="Повний комплект паливного насоса" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-with-gun.jpg" alt="Насос з пістолетом для перекачування" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-in-garage.jpg" alt="Насос у гаражі з автомобілем" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-on-road.jpg" alt="Насос на дорозі" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-clean-bg.jpg" alt="Насос на чистому фоні" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://raw.githubusercontent.com/hapers-vibe/nasosua-landing/main/images/pump-components.jpg" alt="Компоненти насоса" loading="lazy"></div>
       </div>
       <div class="swiper-pagination"></div>
     </div>
   </div>
 </section>
-  </div>
 
 <div class="container">
-
-<section class="hero">
+  <section class="hero">
     <span class="hero__badge">⚡ Хіт продажів 2026</span>
     <h1 class="hero__title">
       Паливний насос для перекачування палива<br>
@@ -583,9 +678,6 @@ h1, h2, h3 {
       ЗАМОВИТИ ЗА 1000 ₴
     </button>
   </section>
-
-  <div class="glass-container">
-
 
   <section class="section">
     <h2 class="section__title">Чому обирають <span class="highlight">нас</span></h2>
@@ -705,27 +797,21 @@ h1, h2, h3 {
           <div class="form-honeypot" aria-hidden="true">
             <input type="text" name="website" tabindex="-1" autocomplete="off">
           </div>
-
           <div class="form-group">
             <input type="text" name="name" class="form-input" placeholder="Ваше ПІБ" required minlength="3" autocomplete="name">
           </div>
-
           <div class="form-group">
             <input type="tel" name="phone" class="form-input" placeholder="+380 __ ___ __ __" required pattern="^(\+?38)?0\d{9}$" inputmode="tel" autocomplete="tel">
           </div>
-
           <div class="form-group">
             <input type="text" name="city" class="form-input" placeholder="Місто (наприклад, Київ)" required minlength="2" autocomplete="address-level2">
           </div>
-
           <div class="form-group">
             <input type="text" name="warehouse" class="form-input" placeholder="№ відділення Нової Пошти" required>
           </div>
-
           <button type="submit" class="btn-cta" id="submitBtn">
             ПІДТВЕРДИТИ ЗАМОВЛЕННЯ
           </button>
-
           <div class="form-trust">
             <div>✅ Оплата при отриманні — без передоплати</div>
             <div>🚚 Доставка 1-3 дні по всій Україні</div>
@@ -749,30 +835,23 @@ h1, h2, h3 {
       <button class="faq-item__q" type="button">Для яких автомобілів підходить?</button>
       <div class="faq-item__a">Працює від 12V і 24V — підходить для легкових авто, вантажівок, тракторів, човнів.</div>
     </div>
-
     <div class="faq-item">
       <button class="faq-item__q" type="button">Чи можна качати бензин?</button>
       <div class="faq-item__a">Так, насос підтримує бензин, дизель, олію, гас та інші технічні рідини.</div>
     </div>
-
     <div class="faq-item">
       <button class="faq-item__q" type="button">Як підключати до акумулятора?</button>
       <div class="faq-item__a">Червоні кліпси на плюс, чорні на мінус. Довжина кабелю — 3 метри, вистачає для більшості авто.</div>
     </div>
-
     <div class="faq-item">
       <button class="faq-item__q" type="button">Скільки йде доставка?</button>
       <div class="faq-item__a">1-3 робочі дні по всій Україні. Відправляємо в день замовлення або наступного ранку.</div>
     </div>
-
     <div class="faq-item">
       <button class="faq-item__q" type="button">Чи є гарантія?</button>
       <div class="faq-item__a">Так, 14 днів на повернення якщо не підійшов + гарантія виробника на дефекти.</div>
     </div>
   </section>
-
-</div>
-  </div>
 
 </div>
 
@@ -781,210 +860,7 @@ h1, h2, h3 {
   <div style="margin-top:8px;">Доставка Новою Поштою · Повернення 14 днів</div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-
-<script>
-const LANDING_CONFIG = {
-  apiUrl: 'https://nasosua-backend.vercel.app/api/order',
-  shopName: 'NasosUA',
-  product: 'Паливний насос з пістолетом',
-  price: '1000',
-  timerHours: 3,
-};
-
-(function initTimer() {
-  const TIMER_KEY = 'landing_timer_end';
-  let endTime = parseInt(sessionStorage.getItem(TIMER_KEY) || '0', 10);
-  if (!endTime || endTime < Date.now()) {
-    endTime = Date.now() + LANDING_CONFIG.timerHours * 60 * 60 * 1000;
-    sessionStorage.setItem(TIMER_KEY, String(endTime));
-  }
-  const hEl = document.getElementById('timer-h');
-  const mEl = document.getElementById('timer-m');
-  const sEl = document.getElementById('timer-s');
-  function pad(n) { return String(n).padStart(2, '0'); }
-  function tick() {
-    let diff = Math.max(0, endTime - Date.now());
-    const h = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    if (hEl) hEl.textContent = pad(h);
-    if (mEl) mEl.textContent = pad(m);
-    if (sEl) sEl.textContent = pad(s);
-    if (diff <= 0) {
-      endTime = Date.now() + LANDING_CONFIG.timerHours * 60 * 60 * 1000;
-      sessionStorage.setItem(TIMER_KEY, String(endTime));
-    }
-  }
-  tick();
-  setInterval(tick, 1000);
-})();
-
-document.querySelectorAll('[data-scroll-to]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const target = document.getElementById(btn.dataset.scrollTo);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (typeof fbq !== 'undefined') {
-        fbq('track', 'InitiateCheckout', {
-          content_name: LANDING_CONFIG.product,
-          value: parseFloat(LANDING_CONFIG.price),
-          currency: 'UAH'
-        });
-      }
-    }
-  });
-});
-
-window.addEventListener('load', () => {
-  if (typeof Swiper === 'undefined') return;
-  new Swiper('#product-gallery', {
-    loop: true,
-    slidesPerView: 1,
-    spaceBetween: 0,
-    speed: 600,
-    effect: 'slide',
-    autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
-    pagination: { el: '.swiper-pagination', clickable: true },
-    grabCursor: true
-  });
-});
-
-document.querySelectorAll('.faq-item__q').forEach(q => {
-  q.addEventListener('click', () => {
-    q.closest('.faq-item').classList.toggle('faq-item--open');
-  });
-});
-
-(function initScrollTracking() {
-  let viewContentFired = false;
-  let addToCartFired = false;
-  setTimeout(() => {
-    if (!viewContentFired) {
-      viewContentFired = true;
-      if (typeof fbq !== 'undefined') {
-        fbq('track', 'ViewContent', {
-          content_name: LANDING_CONFIG.product,
-          value: parseFloat(LANDING_CONFIG.price),
-          currency: 'UAH'
-        });
-      }
-    }
-  }, 10000);
-  window.addEventListener('scroll', () => {
-    if (addToCartFired) return;
-    const scrolled = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
-    if (scrolled > 0.5) {
-      addToCartFired = true;
-      if (typeof fbq !== 'undefined') {
-        fbq('track', 'AddToCart', {
-          content_name: LANDING_CONFIG.product,
-          value: parseFloat(LANDING_CONFIG.price),
-          currency: 'UAH'
-        });
-      }
-    }
-  }, { passive: true });
-})();
-
-function getUrlParams() {
-  const params = new URLSearchParams(window.location.search);
-  const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_content', 'utm_term', 'ttclid', 'fbclid'];
-  const result = {};
-  keys.forEach(key => {
-    const val = params.get(key);
-    if (val) {
-      result[key] = val;
-      sessionStorage.setItem('utm_' + key, val);
-    } else {
-      const saved = sessionStorage.getItem('utm_' + key);
-      if (saved) result[key] = saved;
-    }
-  });
-  return result;
-}
-
-document.getElementById('orderForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const submitBtn = document.getElementById('submitBtn');
-  const originalBtnText = submitBtn.innerHTML;
-  
-  const phoneInput = form.querySelector('[name="phone"]');
-  const phone = phoneInput.value.replace(/[\s\-()]/g, '');
-  if (!/^(\+?38)?0\d{9}$/.test(phone)) {
-    phoneInput.classList.add('form-input--error');
-    phoneInput.focus();
-    return;
-  }
-  phoneInput.classList.remove('form-input--error');
-  
-  const requiredFields = ['name', 'city', 'warehouse'];
-  let hasError = false;
-  requiredFields.forEach(field => {
-    const input = form.querySelector('[name="' + field + '"]');
-    if (!input.value.trim() || input.value.trim().length < 2) {
-      input.classList.add('form-input--error');
-      hasError = true;
-    } else {
-      input.classList.remove('form-input--error');
-    }
-  });
-  
-  if (hasError) {
-    form.querySelector('.form-input--error').focus();
-    return;
-  }
-  
-  const formData = new FormData(form);
-  const urlParams = getUrlParams();
-  const payload = {
-    name: formData.get('name').trim(),
-    phone: phone,
-    city: formData.get('city').trim(),
-    warehouse: formData.get('warehouse').trim(),
-    website: formData.get('website') || '',
-    shop_name: LANDING_CONFIG.shopName,
-    product: LANDING_CONFIG.product,
-    price: LANDING_CONFIG.price,
-    full_url: window.location.href,
-    ...urlParams
-  };
-  
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = '⏳ Відправка...';
-  
-  try {
-    const response = await fetch(LANDING_CONFIG.apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error || 'Помилка відправки');
-    }
-    
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'Lead', {
-        content_name: LANDING_CONFIG.product,
-        value: parseFloat(LANDING_CONFIG.price),
-        currency: 'UAH'
-      });
-    }
-    
-    document.getElementById('order-form-content').style.display = 'none';
-    document.getElementById('thankYou').classList.add('thank-you--active');
-    document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
-    
-  } catch (error) {
-    alert('❌ ' + (error.message || 'Помилка. Спробуйте ще раз.'));
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalBtnText;
-  }
-});
-</script>
+</div>
 
 </body>
 </html>

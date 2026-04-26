@@ -1037,6 +1037,163 @@ h1, h2, h3 {
   line-height: 1.5;
 }
 
+
+/* 🎯 HERO SUBTITLE — pain point hook */
+.hero__subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin: 12px auto 24px;
+  line-height: 1.45;
+  max-width: 360px;
+  font-weight: 500;
+}
+@media (min-width: 768px) {
+  .hero__subtitle { font-size: 18px; margin: 16px auto 28px; max-width: 480px; }
+}
+
+/* 🛡️ GUARANTEE BLOCK (Peak-End Rule + Trust signals) */
+.guarantee-block {
+  background: rgba(255, 107, 53, 0.08);
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  border-radius: var(--r-lg);
+  padding: 24px 20px;
+  margin: 24px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.guarantee-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,107,53,0.6), transparent);
+}
+.guarantee-block__icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  display: block;
+}
+.guarantee-block__title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.guarantee-block__text {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+.guarantee-block__items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.guarantee-block__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: white;
+  line-height: 1.4;
+}
+.guarantee-block__check {
+  color: #4ADE80;
+  font-weight: bold;
+  flex-shrink: 0;
+  font-size: 18px;
+  line-height: 1;
+}
+@media (min-width: 768px) {
+  .guarantee-block { padding: 32px 24px; }
+  .guarantee-block__title { font-size: 28px; }
+  .guarantee-block__text { font-size: 16px; }
+  .guarantee-block__item { font-size: 15px; }
+}
+
+/* 🔥 SCARCITY BAR (Loss Aversion) */
+.scarcity-bar {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(220, 38, 38, 0.05));
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  margin: 16px 0;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.scarcity-bar__icon {
+  font-size: 20px;
+  animation: scarcityPulse 1s ease-in-out infinite;
+}
+.scarcity-bar__count {
+  color: #EF4444;
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+}
+@keyframes scarcityPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* 🇺🇦 TRUST BADGES (Mere Exposure Effect) */
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.trust-badge {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.trust-badge__icon { font-size: 14px; }
+
+/* 💡 WHY-CHEAP BLOCK (Pratfall Effect — admit small flaw) */
+.why-cheap {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: 18px 20px;
+  margin: 20px 0;
+}
+.why-cheap__title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.why-cheap__text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.55;
+}
+
 </style>
 
 <!-- Facebook Pixel -->
@@ -1284,9 +1441,13 @@ fbq('track', 'PageView');
 <div class="container">
   <section class="hero">
     <h1 class="hero__title">
-      <span class="hero__title-main">Паливний насос для перекачування палива</span>
-      <span class="hero__title-sub">30 літрів за хвилину</span>
+      <span class="hero__title-main">Перекачай 30 літрів палива</span>
+      <span class="hero__title-sub">за 1 хвилину</span>
     </h1>
+    
+    <p class="hero__subtitle">
+      Забудь про сифон, ручні насоси та шланги. Один кабель до акумулятора — і готово.
+    </p>
     
     <div class="price-pills">
       <!-- 🟧 Pill 1: СТАРА ЦІНА -->
@@ -1308,7 +1469,7 @@ fbq('track', 'PageView');
     </div>
 
     <button type="button" class="btn-cta btn-cta--pulse" data-scroll-to="order-form">
-      ЗАМОВИТИ
+      ЗАМОВИТИ ЗА 1000₴
     </button>
   </section>
 
@@ -1425,6 +1586,15 @@ fbq('track', 'PageView');
       <div class="review__text">Швидка доставка, все як на фото. Мотор потужний, качає справді швидко. Кліпси міцні, нічого не підтікає.</div>
     </div>
   </section>
+
+  <!-- 🔥 SCARCITY BAR перед формою -->
+  <div class="container">
+    <div class="scarcity-bar">
+      <span class="scarcity-bar__icon">🔥</span>
+      <span>Залишилось у наявності:</span>
+      <span class="scarcity-bar__count">17 шт</span>
+    </div>
+  </div>
 
   <section class="section" id="order-form">
     <div class="order-form">

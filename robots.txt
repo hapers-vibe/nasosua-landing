@@ -1,5 +1,25 @@
+# robots.txt для nasosua.shop
+# Generated 2026-04-26 — оптимизирован для SEO + AI search
+
 User-agent: *
 Allow: /
 Disallow: /images/preview*
 
+# 🤖 AI Crawlers — РАЗРЕШАЕМ для SEO в эпоху AI search
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap
 Sitemap: https://nasosua.shop/sitemap.xml
